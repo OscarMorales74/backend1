@@ -10,7 +10,7 @@ class ProductManager{
     addProduct (title, description, price, thumbnail, idProduct, stock){
         
         // Validar que todos los campos sean obligatorios
-        if (!title || !description || !price || !thumbnail || !stock) {
+        if (!title || !description || !price || !idProduct || !stock) {
             console.log("Todos los campos son obligatorios");
         };
         //validacion del id
@@ -58,10 +58,10 @@ class ProductManager{
 
 const productManager = new ProductManager();
 
-productManager.addProduct('Lapiz', 'Lapiz grafito', 500,'imagen')
-productManager.addProduct('Goma', 'Goma de borrar', 50, 'imagen', 20)
-productManager.addProduct('Cuaderno', 'Cuaderno cuadriculado', 300, 'imagen', 40)
-productManager.addProduct('Cuaderno', 'Cuaderno cuadriculado', 300, 'imagen', 40)
+productManager.addProduct('Lapiz', 'Lapiz grafito', 500,'imagen', 1, 20)
+productManager.addProduct('Goma', 'Goma de borrar', 50, 'imagen', 20, 30)
+productManager.addProduct('Cuaderno', 'Cuaderno cuadriculado', 300, 'imagen', 40, 60)
+productManager.addProduct('Cuaderno', 'Cuaderno cuadriculado', 300, 'imagen', 40, 80)
 
 console.log(productManager.getProducts());
 productManager.getProductsById(2)
