@@ -7,27 +7,29 @@ class ProductManager{
         return this.products;
     }
 
-    addProduct (title, description, price, thumbnail, idProduct, stock){
+    addProduct (id, title, description, price, thumbnail, codigo, stock){
         
         // Validar que todos los campos sean obligatorios
-        if (!title || !description || !price || !idProduct || !stock) {
+        if (!id, !title || !description || !price || !codigo || !stock) {
             console.log("Todos los campos son obligatorios");
-        };
-        //validacion del id
-        const productRepeated = this.#getIdProduct(idProduct);
-        if (productRepeated) {
-            console.log("Ya existe un producto con ese código");
-        };
-        const product = {
-            title,
-            description,
-            price,
-            thumbnail,
-            id: this.#nuevoId() + 1,
-            stock
-        };
-        this.products.push(product);
-
+        }else{
+            //validacion del id
+            const productRepeated = this.products.find(product => product.codigo === codigo);
+            if (productRepeated) {
+                console.log("Ya existe un producto con ese código");
+            } else{
+                const product = {
+                    id: this.#nuevoId() + 1,
+                    title,
+                    description,
+                    price,
+                    thumbnail,
+                    codigo: codigo,
+                    stock
+                }
+                this.products.push(product);
+            }
+        }
     }
     // Validacion del id
     #getIdProduct(idProduct){
@@ -58,10 +60,10 @@ class ProductManager{
 
 const productManager = new ProductManager();
 
-productManager.addProduct('Lapiz', 'Lapiz grafito', 500,'imagen', 1, 20)
-productManager.addProduct('Goma', 'Goma de borrar', 50, 'imagen', 20, 30)
-productManager.addProduct('Cuaderno', 'Cuaderno cuadriculado', 300, 'imagen', 40, 60)
-productManager.addProduct('Cuaderno', 'Cuaderno cuadriculado', 300, 'imagen', 40, 80)
+productManager.addProduct(1, 'Lapiz', 'Lapiz grafito', 500,'imagen', 501, 20)
+productManager.addProduct(1, 'Goma', 'Goma de borrar', 50, 'imagen', 502, 30)
+productManager.addProduct(1, 'Cuaderno', 'Cuaderno cuadriculado', 300, 'imagen', 503, 60)
+productManager.addProduct(1, 'Cuaderno', 'Cuaderno cuadriculado', 300, 'imagen', 503, 80)
 
 console.log(productManager.getProducts());
 productManager.getProductsById(2)
